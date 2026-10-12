@@ -281,15 +281,47 @@ section{padding:66px 0}
 .bless:hover{transform:translateY(-7px);box-shadow:0 22px 44px rgba(180,120,130,.2)}
 .bless-n{position:absolute;top:12px;right:16px;font-size:12px;color:#dcb8c0;letter-spacing:.1em}
 
-/* ============ 愿望板 ============ */
-.wish-row{display:flex;gap:10px;max-width:600px;margin:0 auto 24px}
-.wish-row input{
-  flex:1;padding:14px 18px;border-radius:999px;font-size:15px;color:var(--ink);
-  border:1px solid rgba(201,148,74,.34);background:rgba(255,255,255,.86);outline:none;
-  font-family:inherit;
+/* ============ 愿望板（整页最醒目的许愿区） ============ */
+.wish-panel{
+  max-width:720px;margin:0 auto;padding:34px 28px 28px;border-radius:calc(var(--radius) + 10px);
+  background:linear-gradient(150deg,rgba(255,252,246,.96),rgba(255,236,242,.93));
+  border:1px solid rgba(201,148,74,.32);box-shadow:0 26px 60px rgba(180,120,130,.2);
+  text-align:center;position:relative;overflow:hidden;
 }
-.wish-row input:focus{border-color:var(--rose);box-shadow:0 0 0 4px rgba(217,79,110,.1)}
-.wish-board{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.wish-panel::before{
+  content:"";position:absolute;inset:-45% -10% auto -10%;height:75%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,214,228,.6),transparent);
+}
+.wish-badge{
+  display:inline-block;position:relative;z-index:2;margin-bottom:14px;
+  font-size:12.5px;letter-spacing:.2em;padding:6px 16px;border-radius:999px;
+  color:#a8607a;background:rgba(255,255,255,.88);border:1px solid rgba(217,79,110,.28);
+}
+.wish-title{
+  position:relative;z-index:2;margin:0 0 8px;
+  font-family:"KaiTi","STKaiti",serif;font-size:clamp(22px,5.6vw,32px);
+  letter-spacing:.08em;line-height:1.6;
+}
+.wish-sub{position:relative;z-index:2;margin:0 0 24px;color:var(--muted);font-size:14px}
+.wish-row{position:relative;z-index:2;display:flex;gap:12px;max-width:560px;margin:0 auto 24px}
+.wish-row input{
+  flex:1;min-width:0;padding:16px 20px;border-radius:999px;font-size:16px;color:var(--ink);
+  border:1px solid rgba(201,148,74,.4);background:rgba(255,255,255,.95);outline:none;
+  font-family:inherit;box-shadow:inset 0 2px 6px rgba(180,120,130,.07);
+}
+.wish-row input::placeholder{color:#c4a9ae}
+.wish-row input:focus{border-color:var(--rose);box-shadow:0 0 0 5px rgba(217,79,110,.12)}
+.btn-wish{
+  flex:none;padding:16px 30px;border-radius:999px;font-size:16px;letter-spacing:.06em;
+  color:#fff;background:linear-gradient(120deg,#d94f6e,#e8768d 55%,#c9944a);
+  box-shadow:0 12px 28px rgba(217,79,110,.32);white-space:nowrap;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.btn-wish:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(217,79,110,.4)}
+.wish-board{
+  position:relative;z-index:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:14px;text-align:left;
+}
 .wish-card{
   padding:18px 20px;border-radius:16px;font-family:"KaiTi",serif;font-size:15.5px;
   background:linear-gradient(150deg,#fffaf2,#ffeef3);border:1px solid rgba(201,148,74,.26);
@@ -326,8 +358,41 @@ footer{text-align:center;color:#c0a7ad;font-size:12.5px;padding:0 0 34px;letter-
 @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
 @media (max-width:820px){
-  section{padding:52px 0}
+  .wrap{padding:0 18px}
+  section{padding:50px 0}
+  .hero{padding-top:56px;padding-bottom:26px}
   .mirror{max-height:64vh}
+  .sec-sub{margin-bottom:26px}
+  .quote-box{padding:26px 20px}
+  .kitchen{padding:30px 20px}
+  .ending-card{padding:40px 22px}
+  .bless-grid{grid-template-columns:1fr;gap:14px}
+  .bless{padding:20px 19px;font-size:16px}
+  .trait-grid{grid-template-columns:1fr}
+  .wish-panel{padding:28px 20px 22px}
+  .tag{font-size:13px;padding:7px 14px}
+}
+@media (max-width:560px){
+  html{-webkit-text-size-adjust:100%}
+  body{padding-bottom:env(safe-area-inset-bottom)}
+  .topbar{top:calc(10px + env(safe-area-inset-top));right:10px;gap:8px}
+  .icon-btn{width:42px;height:42px;font-size:17px}
+  .hero{padding-top:64px}
+  .name{letter-spacing:.04em}
+  .pill-row{gap:7px;margin-bottom:18px}
+  .pill{font-size:12px;padding:5px 12px}
+  .hero-hb{letter-spacing:.22em;text-indent:.22em}
+  .hero-poem{font-size:14.5px;line-height:2.05}
+  .sec-title{letter-spacing:.06em}
+  .btn-soft{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:48px}
+  .wish-row{flex-direction:column;gap:10px}
+  .wish-row input,.btn-wish{width:100%}
+  .btn-wish{min-height:50px}
+  .wish-board{grid-template-columns:1fr}
+  .intro-box{padding:0 4px}
+  .btn-open{width:100%;min-height:54px}
+  .scroll-hint{font-size:12px}
+  .hearts{letter-spacing:.28em}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
@@ -371,8 +436,8 @@ footer{text-align:center;color:#c0a7ad;font-size:12.5px;padding:0 0 34px;letter-
     <p class="hero-hb reveal">生 日 快 乐</p>
     <p class="hero-poem reveal">
       世界上有一种好看，叫妈妈的样子。<br />
-      围裙是她的战袍，口红是她的勋章；<br />
-      一手端得住热汤，一手撑得起我们的家。
+      围裙是她的战袍，好皮肤是她的勋章；<br />
+      一手端得住热汤，一手护得住好气色。
     </p>
     <p class="scroll-hint reveal">↓ 往下滑，有给你准备的小惊喜</p>
   </section>
@@ -410,7 +475,7 @@ footer{text-align:center;color:#c0a7ad;font-size:12.5px;padding:0 0 34px;letter-
         <span class="sparkle">✦</span><span class="sparkle">✦</span>
         <span class="sparkle">✦</span><span class="sparkle">✦</span>
         <div class="mirror-inner" id="mirrorInner">
-          <div class="mirror-icon">💄</div>
+          <div class="mirror-icon">🧴</div>
           <div class="mirror-text">
             这里留给妈妈最好看的一张照片
             <small>把照片命名为 photo.jpg 放在网页旁边，就会自动显示</small>
@@ -421,7 +486,7 @@ footer{text-align:center;color:#c0a7ad;font-size:12.5px;padding:0 0 34px;letter-
 
       <div class="trait-grid">
         <div class="trait reveal"><div class="trait-i">💇‍♀️</div><div><div class="trait-t">发型永远在线</div><div class="trait-d">出门前那几分钟的整理，是对生活最认真的仪式感。</div></div></div>
-        <div class="trait reveal"><div class="trait-i">💋</div><div><div class="trait-t">口红色号从不认输</div><div class="trait-d">越忙越要好看，这是妈妈教给我们的人生态度。</div></div></div>
+        <div class="trait reveal"><div class="trait-i">🧴</div><div><div class="trait-t">护肤从不偷懒</div><div class="trait-d">再忙也要把脸洗干净、把水补足，这是妈妈最认真的仪式感。</div></div></div>
         <div class="trait reveal"><div class="trait-i">🌷</div><div><div class="trait-t">笑起来有光</div><div class="trait-d">你一笑，家里的灯都可以省一盏。</div></div></div>
         <div class="trait reveal"><div class="trait-i">🧴</div><div><div class="trait-t">四十四岁，正当好看</div><div class="trait-d">岁月对你格外客气，只肯给你添光，不肯给你添岁。</div></div></div>
       </div>
@@ -466,24 +531,28 @@ footer{text-align:center;color:#c0a7ad;font-size:12.5px;padding:0 0 34px;letter-
     <div class="bless-grid">
       <div class="bless reveal"><span class="bless-n">01</span>愿你眼里有光，手里有勺，心里有糖。</div>
       <div class="bless reveal"><span class="bless-n">02</span>愿你以后的每一天，都比昨天更漂亮一点。</div>
-      <div class="bless reveal"><span class="bless-n">03</span>愿你少站一会儿灶台，多坐一会儿梳妆台。</div>
+      <div class="bless reveal"><span class="bless-n">03</span>愿你少站一会儿灶台，多贴一张面膜。</div>
       <div class="bless reveal"><span class="bless-n">04</span>愿你年年被夸，岁岁被爱，做的菜顿顿被抢光。</div>
       <div class="bless reveal"><span class="bless-n">05</span>愿你身体康健，笑起来还是二十岁的模样。</div>
       <div class="bless reveal"><span class="bless-n">06</span>愿你所有的辛苦都换成甜，所有的付出都被看见。</div>
     </div>
   </section>
 
-  <!-- ============ 愿望板 ============ -->
-  <section>
-    <h2 class="sec-title center reveal"><span class="orn">❀</span> 今年的愿望，写在这里 <span class="orn">❀</span></h2>
-    <p class="sec-sub center reveal">写下来，它就一定会实现</p>
+  <!-- ============ 愿望板（整页最醒目的许愿区） ============ -->
+  <section id="wish">
+    <div class="wish-panel reveal">
+      <div class="wish-badge">✨ 生 日 许 愿 ✨</div>
+      <h2 class="wish-title">妈妈，把今年的愿望写下来</h2>
+      <p class="wish-sub">生日这一天许下的心愿，最灵验</p>
 
-    <div class="wish-row reveal">
-      <input id="wishInput" type="text" maxlength="60" placeholder="例如：今年想去看一次海 🌊" aria-label="写下生日愿望" />
-      <button class="btn-soft" id="btnWish">挂上去</button>
-    </div>
-    <div class="wish-board" id="wishBoard">
-      <p class="wish-empty">还没有愿望，等妈妈写第一个 🌸</p>
+      <div class="wish-row">
+        <input id="wishInput" type="text" maxlength="60" placeholder="例如：今年想去看一次海 🌊" aria-label="写下生日愿望" />
+        <button class="btn-wish" id="btnWish">挂上去 ✨</button>
+      </div>
+
+      <div class="wish-board" id="wishBoard">
+        <p class="wish-empty">还没有愿望，等妈妈写第一个 🌸</p>
+      </div>
     </div>
   </section>
 
@@ -650,16 +719,105 @@ footer{text-align:center;color:#c0a7ad;font-size:12.5px;padding:0 0 34px;letter-
   }
   if (!reduceMotion) requestAnimationFrame(frame);
 
-  /* ================= 生日歌（Web Audio） ================= */
-  var music = { on: false, ctx: null, timer: null, nodes: [] };
-  var N = { G4: 392.00, A4: 440.00, B4: 493.88, C5: 523.25, D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99 };
+  /* ================= 生日歌（Web Audio 合成钢琴） ================= */
+  var music = { on: false, ctx: null, timer: null, out: null };
+
+  var N = {
+    G4: 392.00, A4: 440.00, B4: 493.88, C5: 523.25,
+    D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99
+  };
+
   var MELODY = [
     ["G4", .75], ["G4", .25], ["A4", 1], ["G4", 1], ["C5", 1], ["B4", 2],
     ["G4", .75], ["G4", .25], ["A4", 1], ["G4", 1], ["D5", 1], ["C5", 2],
     ["G4", .75], ["G4", .25], ["G5", 1], ["E5", 1], ["C5", 1], ["B4", 1], ["A4", 2],
-    ["F5", .75], ["F5", .25], ["E5", 1], ["C5", 1], ["D5", 1], ["C5", 2.4]
+    ["F5", .75], ["F5", .25], ["E5", 1], ["C5", 1], ["D5", 1], ["C5", 2.6]
   ];
-  var BEAT = 0.46;
+  var BEAT = 0.52;
+
+  // 钢琴泛音结构：序号 -> 相对音量。高次泛音少而弱，听起来圆润，不刺耳。
+  var PARTIALS = [[1, 1], [2, .34], [3, .17], [4, .095], [5, .052], [6, .028], [7, .015]];
+
+  // 生成一小段混响脉冲，给钢琴加一点厅堂感
+  function makeReverb(ac, seconds, decay) {
+    var rate = ac.sampleRate;
+    var len = Math.max(1, Math.floor(rate * seconds));
+    var buf = ac.createBuffer(2, len, rate);
+    for (var ch = 0; ch < 2; ch++) {
+      var d = buf.getChannelData(ch);
+      for (var i = 0; i < len; i++) {
+        d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, decay);
+      }
+    }
+    return buf;
+  }
+
+  // 音频链路只建一次，循环时复用
+  function ensureGraph() {
+    if (music.out) return;
+    var ac = music.ctx;
+
+    var master = ac.createGain();
+    master.gain.value = 0.60;          // 总音量：柔和为主
+
+    // 限幅器：多个音叠加时也不会破音（破音正是"刺耳"的来源）
+    var comp = ac.createDynamicsCompressor();
+    comp.threshold.value = -13;
+    comp.knee.value = 10;
+    comp.ratio.value = 4;
+    comp.attack.value = 0.008;
+    comp.release.value = 0.3;
+    master.connect(comp);
+    comp.connect(ac.destination);
+
+    var verb = ac.createConvolver();
+    verb.buffer = makeReverb(ac, 1.8, 2.6);
+    var verbGain = ac.createGain();
+    verbGain.gain.value = 0.26;
+    verb.connect(verbGain);
+    verbGain.connect(master);
+
+    var out = ac.createGain();
+    out.gain.value = 1;
+    out.connect(master);   // 干声
+    out.connect(verb);     // 湿声
+
+    music.out = out;
+  }
+
+  // 一个"钢琴音"：多个正弦泛音叠加 + 低通滤波 + 快起音、慢衰减
+  function pianoNote(freq, start, beats) {
+    var ac = music.ctx;
+    var dur = beats * BEAT;
+    var ring = dur * 1.25 + 1.05;      // 让音自然延续，像踩着延音踏板
+
+    var env = ac.createGain();
+    var lp = ac.createBiquadFilter();
+    lp.type = "lowpass";
+    lp.frequency.value = 3000;         // 削掉刺耳的高频
+    lp.Q.value = 0.35;
+    env.connect(lp);
+    lp.connect(music.out);
+
+    var g = env.gain;
+    g.setValueAtTime(0.0001, start);
+    g.linearRampToValueAtTime(0.40, start + 0.008);        // 击弦瞬间
+    g.exponentialRampToValueAtTime(0.0001, start + ring);  // 指数衰减
+
+    for (var i = 0; i < PARTIALS.length; i++) {
+      var mult = PARTIALS[i][0];
+      var osc = ac.createOscillator();
+      osc.type = "sine";
+      // 轻微失谐，模拟真实琴弦的非谐性
+      osc.frequency.value = freq * mult * (1 + 0.00035 * mult * mult);
+      var pg = ac.createGain();
+      pg.gain.value = PARTIALS[i][1];
+      osc.connect(pg);
+      pg.connect(env);
+      osc.start(start);
+      osc.stop(start + ring + 0.1);
+    }
+  }
 
   function playMelody() {
     if (!music.ctx) {
@@ -669,27 +827,15 @@ footer{text-align:center;color:#c0a7ad;font-size:12.5px;padding:0 0 34px;letter-
     }
     var ac = music.ctx;
     if (ac.state === "suspended") ac.resume();
+    ensureGraph();
 
-    var master = ac.createGain();
-    master.gain.value = 0.16;
-    master.connect(ac.destination);
-
-    var t = ac.currentTime + 0.25;
+    var t = ac.currentTime + 0.35;
     MELODY.forEach(function (note) {
-      var dur = note[1] * BEAT;
-      var osc = ac.createOscillator();
-      var g = ac.createGain();
-      osc.type = "triangle";
-      osc.frequency.value = N[note[0]];
-      g.gain.setValueAtTime(0, t);
-      g.gain.linearRampToValueAtTime(1, t + 0.045);
-      g.gain.setTargetAtTime(0.0001, t + dur * 0.72, 0.12);
-      osc.connect(g); g.connect(master);
-      osc.start(t); osc.stop(t + dur + 0.25);
-      t += dur;
+      pianoNote(N[note[0]], t, note[1]);
+      t += note[1] * BEAT;
     });
 
-    var total = (t - ac.currentTime + 1.6) * 1000;
+    var total = (t - ac.currentTime + 2.4) * 1000;
     music.timer = setTimeout(function () {
       if (music.on) playMelody();
     }, total);
@@ -704,7 +850,11 @@ footer{text-align:center;color:#c0a7ad;font-size:12.5px;padding:0 0 34px;letter-
     music.on = false;
     document.getElementById("btnMusic").textContent = "🎵";
     clearTimeout(music.timer);
-    if (music.ctx && music.ctx.state === "running") music.ctx.suspend();
+    if (music.ctx) {
+      try { music.ctx.close(); } catch (e) {}
+      music.ctx = null;
+      music.out = null;
+    }
   }
   document.getElementById("btnMusic").addEventListener("click", function () {
     if (music.on) musicOff();
@@ -778,7 +928,7 @@ footer{text-align:center;color:#c0a7ad;font-size:12.5px;padding:0 0 34px;letter-
     "妈妈的手，能颠勺，也能把日子过成花。",
     "公司食堂的菜谱里，最好吃的那道叫“妈妈做的”。",
     "岁月对妈妈格外客气，只肯给她添光，不肯给她添岁。",
-    "妈妈的发型、耳环、口红色号，都值得被夸一百遍。",
+    "妈妈的发型、皮肤、好气色，都值得被夸一百遍。",
     "有妈妈在的食堂，是一整个公司的好运气。",
     "妈妈走路带风，风里都是葱姜蒜和花香。",
     "全世界最好的保养品，是妈妈自己那份爽朗。",
